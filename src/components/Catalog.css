@@ -1,0 +1,138 @@
+.catalog-container {
+    width: 100%;
+    max-width: 1000px;
+    /* Reducimos ligeramente el ancho máximo para que la retícula de 2 luzca proporcionada */
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+    box-sizing: border-box;
+}
+
+.catalog-banner {
+    background-color: var(--tactical-panel);
+    border: 1px solid var(--tactical-border);
+    padding: 2.5rem;
+    border-radius: 0.75rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.catalog-title {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--tactical-text-main);
+    margin: 0 0 0.5rem 0;
+    letter-spacing: 0.03em;
+}
+
+.catalog-subtitle {
+    color: var(--tactical-text-muted);
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.catalog-controls {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--tactical-panel);
+    border: 1px solid var(--tactical-border);
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.75rem;
+}
+
+.catalog-search-input {
+    padding: 0.75rem 1rem;
+    background-color: var(--tactical-bg);
+    border: 1px solid var(--tactical-border);
+    color: var(--tactical-text-main);
+    border-radius: 0.5rem;
+    width: 320px;
+    outline: none;
+    font-size: 0.88rem;
+    font-family: monospace;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.catalog-search-input:focus {
+    border-color: var(--tactical-accent);
+    box-shadow: 0 0 8px var(--tactical-green-glow);
+}
+
+.catalog-category-group {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding-bottom: 2px;
+}
+
+.catalog-category-btn {
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--tactical-border);
+    background-color: var(--tactical-bg);
+    color: var(--tactical-text-muted);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: monospace;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.catalog-category-btn:hover {
+    color: var(--tactical-text-main);
+    border-color: var(--tactical-border-hover);
+}
+
+.catalog-category-btn-active {
+    background-color: var(--tactical-green);
+    border-color: var(--tactical-green-hover);
+    color: #ffffff;
+    font-weight: bold;
+    box-shadow: 0 2px 8px var(--tactical-green-glow);
+}
+
+/* Rejilla de exactamente 2 columnas amplias con espacios generosos */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.5rem;
+    /* Espacio amplio y limpio entre las tarjetas */
+    width: 100%;
+}
+
+/* En pantallas pequeñas (móviles) baja a 1 sola columna para legibilidad */
+@media (max-width: 768px) {
+    .catalog-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.catalog-empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background-color: var(--tactical-panel);
+    border: 1px solid var(--tactical-border);
+    border-radius: 0.75rem;
+    color: var(--tactical-text-muted);
+    font-family: monospace;
+    font-size: 0.9rem;
+}
+
+.catalog-notification {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background-color: #064e3b;
+    border: 1px solid #10b981;
+    color: #a7f3d0;
+    padding: 12px 20px;
+    border-radius: 8px;
+    z-index: 1000;
+    font-family: monospace;
+    font-size: 0.85rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}

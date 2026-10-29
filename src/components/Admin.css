@@ -1,0 +1,158 @@
+.tactical-admin-container {
+    background-color: #0b0f19;
+    color: #f3f4f6;
+    padding: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tactical-admin-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    border-bottom: 2px solid #1e293b;
+    padding-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+    color: #f8fafc;
+}
+
+.tactical-admin-subtitle {
+    color: #9ca3af;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.tactical-admin-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #1f2937;
+    padding-bottom: 1rem;
+}
+
+.tactical-tab-btn {
+    background: #111827;
+    color: #9ca3af;
+    border: 1px solid #1f2937;
+    padding: 0.75rem 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.tactical-tab-btn.active {
+    background: #2563eb;
+    color: #fff;
+    border-color: #2563eb;
+}
+
+.tactical-tab-btn:hover {
+    filter: brightness(1.15);
+}
+
+.tactical-admin-card {
+    background: #111827;
+    padding: 1.5rem;
+    border: 1px solid #1f2937;
+    border-radius: 6px;
+    margin-bottom: 2rem;
+}
+
+.tactical-admin-card h2 {
+    font-size: 1.2rem;
+    color: #38bdf8;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.tactical-admin-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.tactical-admin-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.tactical-admin-label {
+    font-size: 0.85rem;
+    color: #9ca3af;
+}
+
+.tactical-admin-input {
+    padding: 0.75rem;
+    background: #0b0f19;
+    border: 1px solid #374151;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.tactical-admin-input:focus {
+    outline: none;
+    border-color: #38bdf8;
+}
+
+.tactical-admin-submit {
+    grid-column: 1 / -1;
+    background: #10b981;
+    color: #fff;
+    border: none;
+    padding: 0.75rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: filter 0.2s;
+}
+
+.tactical-admin-submit:hover {
+    filter: brightness(1.15);
+}
+
+.tactical-admin-table-wrapper {
+    overflow-x: auto;
+}
+
+.tactical-admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    margin-top: 1rem;
+}
+
+.tactical-admin-table th,
+.tactical-admin-table td {
+    padding: 0.85rem;
+    border-bottom: 1px solid #1f2937;
+    font-size: 0.9rem;
+}
+
+.tactical-admin-table th {
+    background: #1f2937;
+    color: #38bdf8;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+}
+
+.tactical-denied {
+    background: #111827;
+    border: 1px solid #7f1d1d;
+    border-radius: 6px;
+    padding: 4rem 2rem;
+    text-align: center;
+    max-width: 600px;
+    margin: 4rem auto;
+}
+
+.tactical-denied h2 {
+    color: #ef4444;
+    margin-bottom: 1rem;
+}
+
+.tactical-denied p {
+    color: #9ca3af;
+}

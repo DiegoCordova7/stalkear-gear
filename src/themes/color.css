@@ -1,0 +1,23 @@
+:root {
+    --tactical-bg: #030712;
+    --tactical-panel: #111827;
+    --tactical-border: #1f2937;
+    --tactical-border-hover: #374151;
+    --tactical-green: #15803d;
+    --tactical-green-hover: #16a34a;
+    --tactical-green-glow: rgba(21, 128, 61, 0.3);
+    --tactical-text-main: #ffffff;
+    --tactical-text-muted: #9ca3af;
+    --tactical-accent: #4ade80;
+    --tactical-danger: #7f1d1d;
+    --tactical-danger-text: #fca5a5;
+    --tactical-admin: #78350f;
+    --tactical-admin-text: #fde68a;
+}
+
+body {
+    margin: 0;
+    background-color: var(--tactical-bg);
+    color: var(--tactical-text-main);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}

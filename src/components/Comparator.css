@@ -1,0 +1,168 @@
+.tactical-comparator-container {
+    background-color: #0b0f19;
+    color: #f3f4f6;
+    padding: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tactical-comparator-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    border-bottom: 2px solid #1e293b;
+    padding-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+    color: #f8fafc;
+}
+
+.tactical-comparator-subtitle {
+    color: #9ca3af;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+/* Estado Vacío */
+.tactical-comparator-empty {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 6px;
+    padding: 4rem 2rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.tactical-comparator-empty h2 {
+    color: #38bdf8;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.tactical-comparator-empty p {
+    color: #9ca3af;
+    margin-bottom: 1.5rem;
+}
+
+.tactical-btn-catalog {
+    display: inline-block;
+    background: #2563eb;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: filter 0.2s;
+}
+
+.tactical-btn-catalog:hover {
+    filter: brightness(1.15);
+}
+
+/* Selector de Productos */
+.tactical-selector-box {
+    background: #111827;
+    padding: 1.25rem;
+    border: 1px solid #1f2937;
+    border-radius: 6px;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.tactical-selector-label {
+    font-size: 0.9rem;
+    color: #38bdf8;
+    font-weight: bold;
+}
+
+.tactical-select-input {
+    width: 100%;
+    padding: 0.75rem;
+    background: #0b0f19;
+    border: 1px solid #374151;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.tactical-select-input:focus {
+    outline: none;
+    border-color: #38bdf8;
+}
+
+/* Tabla Comparativa */
+.tactical-table-wrapper {
+    overflow-x: auto;
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 6px;
+}
+
+.tactical-comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tactical-comparison-table th,
+.tactical-comparison-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #1f2937;
+    vertical-align: top;
+}
+
+.tactical-comparison-table th {
+    background: #1f2937;
+    color: #38bdf8;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.tactical-comp-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #374151;
+    margin-bottom: 0.5rem;
+}
+
+.tactical-comp-title {
+    font-weight: bold;
+    color: #f3f4f6;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.tactical-comp-price {
+    color: #00ff66;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.tactical-comp-category {
+    background: #0b0f19;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    border: 1px solid #374151;
+    display: inline-block;
+}
+
+.tactical-remove-btn {
+    background: transparent;
+    color: #ef4444;
+    border: 1px solid #7f1d1d;
+    padding: 0.3rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.tactical-remove-btn:hover {
+    background: #7f1d1d;
+    color: #fff;
+}

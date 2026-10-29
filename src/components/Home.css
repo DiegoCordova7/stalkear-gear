@@ -1,0 +1,99 @@
+.home-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+}
+
+.home-banner {
+    background-color: var(--tactical-panel);
+    border: 1px solid var(--tactical-border);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+}
+
+.home-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--tactical-text-main);
+    margin: 0 0 0.5rem 0;
+    letter-spacing: 0.02em;
+}
+
+.home-subtitle {
+    color: var(--tactical-text-muted);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.home-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-search-input {
+    padding: 0.75rem 1rem;
+    background-color: var(--tactical-bg);
+    border: 1px solid var(--tactical-border);
+    color: var(--tactical-text-main);
+    border-radius: 0.5rem;
+    width: 300px;
+    outline: none;
+    font-size: 0.9rem;
+    transition: border-color 0.2s;
+}
+
+.home-search-input:focus {
+    border-color: var(--tactical-accent);
+}
+
+.home-category-group {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+}
+
+.home-category-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--tactical-border);
+    background-color: var(--tactical-bg);
+    color: var(--tactical-text-main);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.home-category-btn-active {
+    background-color: var(--tactical-green);
+    border-color: var(--tactical-green-hover);
+    font-weight: bold;
+}
+
+.home-empty-state {
+    text-align: center;
+    padding: 4rem;
+    background-color: var(--tactical-panel);
+    border: 1px solid var(--tactical-border);
+    border-radius: 1rem;
+    color: var(--tactical-text-muted);
+}
+
+.home-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #064e3b;
+    border: 1px solid #10b981;
+    color: #a7f3d0;
+    padding: 12px 20px;
+    border-radius: 8px;
+    z-index: 1000;
+    font-family: monospace;
+}
