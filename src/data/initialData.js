@@ -1,3 +1,5 @@
+const BASE_URL = import.meta.env.BASE_URL;
+
 export const INITIAL_PRODUCTS = [
     {
         id: "prod-001",
@@ -5,7 +7,7 @@ export const INITIAL_PRODUCTS = [
         categoria: "Refugios & Acampada",
         precio: 3499.00,
         stock: 15,
-        imagen: "https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=600&q=80",
+        imagen: `${BASE_URL}assets/images/stalker-bivy-and-tarp-system.webp`,
         descripcion: "Sistema de refugio modular de camuflaje, impermeable y de bajo perfil.",
         especificaciones: {
             material: "Nylon Ripstop 70D con recubrimiento PU",
@@ -21,7 +23,7 @@ export const INITIAL_PRODUCTS = [
         categoria: "Hidratación & Cocina",
         precio: 899.00,
         stock: 25,
-        imagen: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=600&q=80",
+        imagen: `${BASE_URL}assets/images/stalker-canteen-and-mess-kit.webp`,
         descripcion: "Cantimplora táctica de aluminio anodizado con jarro acoplable y funda MOLLE.",
         especificaciones: {
             material: "Aluminio grado alimenticio 100%",
@@ -37,7 +39,7 @@ export const INITIAL_PRODUCTS = [
         categoria: "Carga & Almacenamiento",
         precio: 2199.00,
         stock: 10,
-        imagen: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80",
+        imagen: `${BASE_URL}assets/images/mochila-tactica-recon-45l.webp`,
         descripcion: "Mochila ergonómica de combate con expansiones MOLLE y compartimento para vejiga de hidratación.",
         especificaciones: {
             material: "Cordura 1000D",
@@ -53,7 +55,7 @@ export const INITIAL_PRODUCTS = [
         categoria: "Calzado",
         precio: 2899.00,
         stock: 8,
-        imagen: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80",
+        imagen: `${BASE_URL}assets/images/botas-de-combate-all-terrain.webp`,
         descripcion: "Calzado de alta tracción con plantilla anti-perforación y soporte de tobillo rígido.",
         especificaciones: {
             material: "Piel de ante y Nylon Balístico",
@@ -69,7 +71,7 @@ export const INITIAL_PRODUCTS = [
         categoria: "Herramientas",
         precio: 1450.00,
         stock: 12,
-        imagen: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=600&q=80",
+        imagen: `${BASE_URL}assets/images/cuchillo-de-supervivencia-full-tang.webp`,
         descripcion: "Hoja fija de acero al carbono con rompecristales integrado y funda de Kydex.",
         especificaciones: {
             material: "Acero D2 / Empuñadura G10",
@@ -85,7 +87,7 @@ export const INITIAL_PRODUCTS = [
         categoria: "Iluminación & Óptica",
         precio: 750.00,
         stock: 20,
-        imagen: "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?auto=format&fit=crop&w=600&q=80",
+        imagen: `${BASE_URL}assets/images/linterna-tactica-2000-lumens-strobe.webp`,
         descripcion: "Linterna recargable de alta intensidad con modo estroboscópico de emergencia.",
         especificaciones: {
             material: "Aluminio Aeronáutico T6061",
@@ -101,7 +103,7 @@ export const INITIAL_PRODUCTS = [
         categoria: "Vestimenta Táctica",
         precio: 1850.00,
         stock: 14,
-        imagen: "https://images.unsplash.com/photo-1508873696983-2df50903080d?auto=format&fit=crop&w=600&q=80",
+        imagen: `${BASE_URL}assets/images/chest-rig-modular-stalker.webp`,
         descripcion: "Arnés pectoral ligero con porta-cargadores intercambiables y panel velcro.",
         especificaciones: {
             material: "Nylon 500D LAMINEX",
@@ -117,7 +119,7 @@ export const INITIAL_PRODUCTS = [
         categoria: "Médico & Emergencias",
         precio: 1200.00,
         stock: 18,
-        imagen: "https://images.unsplash.com/photo-1603398938378-e54eab446dde?auto=format&fit=crop&w=600&q=80",
+        imagen: `${BASE_URL}assets/images/botiquin-tactico-de-trauma-ifak.webp`,
         descripcion: "Bolsa médica de desprendimiento rápido con organizadores elásticos internos.",
         especificaciones: {
             material: "Cordura 500D Ripstop",
@@ -133,7 +135,7 @@ export const INITIAL_PRODUCTS = [
         categoria: "Accesorios & Herramientas",
         precio: 299.00,
         stock: 40,
-        imagen: "https://images.unsplash.com/photo-1517649763962-0c623266010b?auto=format&fit=crop&w=600&q=80",
+        imagen: `${BASE_URL}assets/images/cuerda-paracord-550-30m.webp`,
         descripcion: "Cuerda de paracord grado 550 con 7 hebras internas de nylon trenzado.",
         especificaciones: {
             material: "100% Nylon Grado 550",
@@ -149,7 +151,7 @@ export const INITIAL_PRODUCTS = [
         categoria: "Iluminación & Óptica",
         precio: 3100.00,
         stock: 6,
-        imagen: "https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?auto=format&fit=crop&w=600&q=80",
+        imagen: `${BASE_URL}assets/images/binoculares-tacticos-10x42-nitrogeno.webp`,
         descripcion: "Binoculares sellados con nitrógeno para evitar empañamiento bajo condiciones extremas.",
         especificaciones: {
             material: "Polímero de alta resistencia con engomado",

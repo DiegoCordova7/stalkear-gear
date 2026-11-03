@@ -8,5 +8,5 @@ export default defineConfig({
     react(),
     babel({ presets: [reactCompilerPreset()] }),
   ],
-  base: '/nombre-de-tu-repo/',
+  base: '/stalkear-gear/',
 })

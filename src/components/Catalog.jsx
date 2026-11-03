@@ -33,35 +33,35 @@ export const Catalog = () => {
     };
 
     return (
-        <div className="home-container">
+        <div className="catalog-container">
             {notification && (
-                <div className="home-notification">
+                <div className="catalog-notification">
                     🛡️ {notification}
                 </div>
             )}
 
-            <div className="home-banner">
-                <h1 className="home-title">CATÁLOGO DE OPERACIONES STALKEAR GEAR</h1>
-                <p className="home-subtitle">
+            <div className="catalog-banner">
+                <h1 className="catalog-title">CATÁLOGO DE OPERACIONES STALKEAR GEAR</h1>
+                <p className="catalog-subtitle">
                     Sistemas de despliegue, hidratación MIL-SPEC y componentes de supervivencia de precisión.
                 </p>
             </div>
 
-            <div className="home-controls">
+            <div className="catalog-controls">
                 <input
                     type="text"
                     placeholder="Buscar equipamiento táctico..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="home-search-input"
+                    className="catalog-search-input"
                 />
 
-                <div className="home-category-group">
+                <div className="catalog-category-group">
                     {categories.map((cat) => (
                         <button
                             key={cat}
                             onClick={() => setSelectedCategory(cat)}
-                            className={`home-category-btn ${selectedCategory === cat ? 'home-category-btn-active' : ''
+                            className={`catalog-category-btn ${selectedCategory === cat ? 'catalog-category-btn-active' : ''
                                 }`}
                         >
                             {cat}
@@ -71,7 +71,7 @@ export const Catalog = () => {
             </div>
 
             {filteredProducts.length === 0 ? (
-                <div className="home-empty-state">
+                <div className="catalog-empty-state">
                     No se localizó equipamiento bajo los filtros actuales.
                 </div>
             ) : (

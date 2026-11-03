@@ -22,7 +22,7 @@ export const Admin = () => {
             <div className="tactical-denied">
                 <h2>ACCESO RESTRINGIDO A COMANDANCIA</h2>
                 <p>Este nivel de autorización requiere credenciales con rango de Administrador.</p>
-                <p style={{ marginTop: '1rem', fontSize: '0.85rem', color: '#6b7280' }}>
+                <p className="tactical-denied-tip">
                     (Tip: Puedes cambiar temporalmente tu rol a 'admin' en el objeto de usuario en localStorage o mediante la base de datos de usuarios).
                 </p>
             </div>
@@ -70,19 +70,11 @@ export const Admin = () => {
             <p className="tactical-admin-subtitle">Control global de inventarios, órdenes de la red y credenciales de operadores.</p>
 
             {mensaje && (
-                <div style={{
-                    background: mensaje.type === 'success' ? '#064e3b' : '#7f1d1d',
-                    color: mensaje.type === 'success' ? '#6ee7b7' : '#fca5a5',
-                    padding: '1rem',
-                    marginBottom: '1.5rem',
-                    borderRadius: '4px',
-                    fontWeight: 'bold'
-                }}>
+                <div className={`tactical-admin-alert ${mensaje.type}`}>
                     {mensaje.text}
                 </div>
             )}
 
-            {/* Pestañas */}
             <div className="tactical-admin-tabs">
                 <button
                     className={`tactical-tab-btn ${activeTab === 'products' ? 'active' : ''}`}
@@ -104,7 +96,6 @@ export const Admin = () => {
                 </button>
             </div>
 
-            {/* VISTA 1: GESTIÓN DE PRODUCTOS */}
             {activeTab === 'products' && (
                 <div>
                     <div className="tactical-admin-card">
@@ -126,11 +117,11 @@ export const Admin = () => {
                                 <label className="tactical-admin-label">Categoría</label>
                                 <input type="text" value={categoria} onChange={(e) => setCategoria(e.target.value)} className="tactical-admin-input" placeholder="Protección / Óptica" />
                             </div>
-                            <div className="tactical-admin-field" style={{ gridColumn: '1 / -1' }}>
+                            <div className="tactical-admin-field grid-full">
                                 <label className="tactical-admin-label">URL de Imagen</label>
                                 <input type="text" value={imagen} onChange={(e) => setImagen(e.target.value)} className="tactical-admin-input" placeholder="https://..." />
                             </div>
-                            <div className="tactical-admin-field" style={{ gridColumn: '1 / -1' }}>
+                            <div className="tactical-admin-field grid-full">
                                 <label className="tactical-admin-label">Descripción Táctica</label>
                                 <textarea value={descripcion} onChange={(e) => setDescripcion(e.target.value)} className="tactical-admin-input" rows="2" placeholder="Detalles técnicos del equipo..." />
                             </div>
@@ -153,7 +144,7 @@ export const Admin = () => {
                                 <tbody>
                                     {products.map((prod) => (
                                         <tr key={prod.id}>
-                                            <td style={{ fontWeight: 'bold' }}>{prod.nombre}</td>
+                                            <td className="table-bold">{prod.nombre}</td>
                                             <td>{prod.categoria}</td>
                                             <td>${prod.precio.toLocaleString()} MXN</td>
                                             <td>
@@ -161,7 +152,7 @@ export const Admin = () => {
                                                     type="number"
                                                     value={prod.stock}
                                                     onChange={(e) => handleStockChange(prod.id, e.target.value)}
-                                                    style={{ width: '80px', padding: '0.4rem', background: '#0b0f19', border: '1px solid #374151', color: '#fff', borderRadius: '4px' }}
+                                                    className="tactical-stock-input"
                                                 />
                                             </td>
                                         </tr>
@@ -173,12 +164,11 @@ export const Admin = () => {
                 </div>
             )}
 
-            {/* VISTA 2: ÓRDENES GLOBALES */}
             {activeTab === 'orders' && (
                 <div className="tactical-admin-card">
                     <h2>HISTORIAL GLOBAL DE ÓRDENES</h2>
                     {orders.length === 0 ? (
-                        <p style={{ color: '#9ca3af' }}>No se han registrado transacciones en la red.</p>
+                        <p className="tactical-empty-text">No se han registrado transacciones en la red.</p>
                     ) : (
                         <div className="tactical-admin-table-wrapper">
                             <table className="tactical-admin-table">
@@ -194,11 +184,11 @@ export const Admin = () => {
                                 <tbody>
                                     {orders.map((ord) => (
                                         <tr key={ord.id}>
-                                            <td style={{ fontWeight: 'bold', color: '#38bdf8' }}>{ord.id}</td>
-                                            <td style={{ fontFamily: 'monospace', fontSize: '0.85rem' }}>{ord.userId}</td>
+                                            <td className="table-order-id">{ord.id}</td>
+                                            <td className="table-mono">{ord.userId}</td>
                                             <td>{ord.fecha}</td>
-                                            <td style={{ color: '#00ff66', fontWeight: 'bold' }}>${ord.total.toLocaleString()} MXN</td>
-                                            <td><span style={{ background: '#064e3b', color: '#6ee7b7', padding: '0.2rem 0.5rem', borderRadius: '4px' }}>{ord.estado}</span></td>
+                                            <td className="table-price">{ord.total.toLocaleString()} MXN</td>
+                                            <td><span className="table-badge-success">{ord.estado}</span></td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -208,7 +198,6 @@ export const Admin = () => {
                 </div>
             )}
 
-            {/* VISTA 3: OPERADORES REGISTRADOS */}
             {activeTab === 'users' && (
                 <div className="tactical-admin-card">
                     <h2>RED DE OPERADORES REGISTRADOS</h2>
@@ -225,17 +214,11 @@ export const Admin = () => {
                             <tbody>
                                 {usersList.map((u) => (
                                     <tr key={u.id}>
-                                        <td style={{ fontFamily: 'monospace', fontSize: '0.85rem' }}>{u.id}</td>
-                                        <td style={{ fontWeight: 'bold' }}>{u.nombre}</td>
+                                        <td className="table-mono">{u.id}</td>
+                                        <td className="table-bold">{u.nombre}</td>
                                         <td>{u.email}</td>
                                         <td>
-                                            <span style={{
-                                                background: u.role === 'admin' ? '#1e3a8a' : '#1f2937',
-                                                color: u.role === 'admin' ? '#93c5fd' : '#9ca3af',
-                                                padding: '0.2rem 0.5rem',
-                                                borderRadius: '4px',
-                                                fontSize: '0.8rem'
-                                            }}>
+                                            <span className={`table-badge-role ${u.role === 'admin' ? 'admin' : 'client'}`}>
                                                 {u.role || 'client'}
                                             </span>
                                         </td>

@@ -1,8 +1,7 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/auth/AuthContext';
 import { CartProvider } from './context/cart/CartContext';
 import { Navbar } from './components/Navbar';
-import { Home } from './components/Home';
 import { Catalog } from './components/Catalog';
 import { ProductDetail } from './components/ProductDetail';
 import { Login } from './components/Login';
@@ -16,7 +15,7 @@ export function App() {
   return (
     <AuthProvider>
       <CartProvider>
-        <BrowserRouter>
+        <BrowserRouter basename="/stalkear-gear">
           <MainLayout />
         </BrowserRouter>
       </CartProvider>
@@ -30,7 +29,7 @@ const MainLayout = () => {
       <Navbar />
       <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Navigate to="/catalog" replace />} />
           <Route path="/register" element={< Register />}></Route>
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/comparator" element={<Comparator />} />

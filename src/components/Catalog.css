@@ -1,7 +1,6 @@
 .catalog-container {
     width: 100%;
-    max-width: 1000px;
-    /* Reducimos ligeramente el ancho máximo para que la retícula de 2 luzca proporcionada */
+    max-width: 95%;
     margin: 0 auto;
     padding: 2.5rem 1.5rem;
     box-sizing: border-box;
@@ -63,10 +62,12 @@
 }
 
 .catalog-category-group {
+    align-content: center;
     display: flex;
     gap: 0.75rem;
-    overflow-x: auto;
-    padding-bottom: 2px;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-bottom: 0.5rem;
 }
 
 .catalog-category-btn {
@@ -95,12 +96,11 @@
     box-shadow: 0 2px 8px var(--tactical-green-glow);
 }
 
-/* Rejilla de exactamente 2 columnas amplias con espacios generosos */
+
 .catalog-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2.5rem;
-    /* Espacio amplio y limpio entre las tarjetas */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
     width: 100%;
 }
 

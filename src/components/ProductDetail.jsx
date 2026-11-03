@@ -9,9 +9,7 @@ export const ProductDetail = () => {
     const { products, addToCart } = useCart();
     const [quantity, setQuantity] = useState(1);
     const [notification, setNotification] = useState(null);
-
     const product = products.find((p) => String(p.id) === String(id));
-
     if (!product) {
         return (
             <div className="product-detail-container" style={{ textAlign: 'center', padding: '4rem 1rem' }}>
@@ -21,14 +19,12 @@ export const ProductDetail = () => {
             </div>
         );
     }
-
     const handleAddToCart = () => {
         if (product.stock <= 0) return;
         addToCart(product, quantity);
         setNotification(`Asignado al equipo: ${quantity}x ${product.nombre}`);
         setTimeout(() => setNotification(null), 3000);
     };
-
     return (
         <div className="product-detail-container">
             {notification && (
@@ -36,24 +32,18 @@ export const ProductDetail = () => {
                     🛡️ {notification}
                 </div>
             )}
-
             <button onClick={() => navigate(-1)} className="product-detail-back-btn">
                 ← Volver al inventario
             </button>
-
             <div className="product-detail-grid">
                 <div className="product-detail-img-wrapper">
                     <img
                         src={product.imagen}
                         alt={product.nombre}
                         className="product-detail-img"
-                        onError={(e) => {
-                            e.target.src = "https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=800&q=80";
-                        }}
                     />
                     <span className="product-detail-category">{product.categoria}</span>
                 </div>
-
                 <div className="product-detail-info">
                     <div>
                         <div className="product-detail-header-meta">
@@ -62,10 +52,8 @@ export const ProductDetail = () => {
                                 {product.stock > 0 ? `STOCK: ${product.stock} UNIDADES` : 'AGOTADO'}
                             </span>
                         </div>
-
                         <h1 className="product-detail-title">{product.nombre}</h1>
                         <p className="product-detail-desc">{product.descripcion}</p>
-
                         {product.especificaciones && (
                             <div className="product-detail-specs-box">
                                 <h3 className="specs-title">ESPECIFICACIONES MIL-SPEC</h3>
@@ -82,8 +70,6 @@ export const ProductDetail = () => {
                             </div>
                         )}
                     </div>
-
-                    {/* Bloque de Compra y Precio */}
                     <div className="product-detail-actions">
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                             <div>
@@ -92,7 +78,6 @@ export const ProductDetail = () => {
                                     ${product.precio.toFixed(2)} <span className="product-card-currency">MXN</span>
                                 </span>
                             </div>
-
                             {product.stock > 0 && (
                                 <div className="quantity-selector">
                                     <button
@@ -107,7 +92,6 @@ export const ProductDetail = () => {
                                 </div>
                             )}
                         </div>
-
                         <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
                             <button
                                 onClick={handleAddToCart}
@@ -117,7 +101,6 @@ export const ProductDetail = () => {
                             >
                                 {product.stock > 0 ? '➕ AÑADIR AL EQUIPO' : 'SIN EXISTENCIAS'}
                             </button>
-
                             <Link
                                 to="/comparator"
                                 className="product-detail-back-btn"

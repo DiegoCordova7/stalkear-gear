@@ -156,3 +156,85 @@
 .tactical-denied p {
     color: #9ca3af;
 }
+
+.tactical-denied-tip {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.tactical-admin-alert {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.tactical-admin-alert.success {
+    background: #064e3b;
+    color: #6ee7b7;
+}
+
+.tactical-admin-alert.error {
+    background: #7f1d1d;
+    color: #fca5a5;
+}
+
+.grid-full {
+    grid-column: 1 / -1;
+}
+
+.table-bold {
+    font-weight: bold;
+}
+
+.table-mono {
+    font-family: monospace;
+    font-size: 0.85rem;
+}
+
+.table-order-id {
+    font-weight: bold;
+    color: #38bdf8;
+}
+
+.table-price {
+    color: #00ff66;
+    font-weight: bold;
+}
+
+.table-badge-success {
+    background: #064e3b;
+    color: #6ee7b7;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+
+.table-badge-role {
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.table-badge-role.admin {
+    background: #1e3a8a;
+    color: #93c5fd;
+}
+
+.table-badge-role.client {
+    background: #1f2937;
+    color: #9ca3af;
+}
+
+.tactical-stock-input {
+    width: 80px;
+    padding: 0.4rem;
+    background: #0b0f19;
+    border: 1px solid #374151;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.tactical-empty-text {
+    color: #9ca3af;
+}

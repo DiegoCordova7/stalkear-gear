@@ -15,12 +15,10 @@
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px -3px var(--tactical-green-glow);
 }
 
-/* Forzar que el enlace de la imagen se comporte como bloque estricto */
 .product-card-img-wrapper {
     display: block;
     width: 100%;
     height: 180px;
-    /* Altura compacta controlada */
     background-color: var(--tactical-bg);
     overflow: hidden;
     position: relative;
@@ -78,7 +76,6 @@
     line-height: 1.4;
     margin: 0 0 0.75rem 0;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
