@@ -10,7 +10,7 @@ export const Login = () => {
     const { login } = useAuth();
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
 
@@ -19,13 +19,15 @@ export const Login = () => {
             return;
         }
 
-        const result = login(email, password);
+        const result = await login(email, password);
 
         if (result.success) {
             const savedSession = JSON.parse(localStorage.getItem('stalkear_session') || '{}');
             if (savedSession.role === 'admin') navigate('/admin');
             else navigate('/catalog');
-        } else setError(result.message || 'FALLO EN LA AUTENTICACIÓN.');
+        } else {
+            setError(result.message || 'FALLO EN LA AUTENTICACIÓN.');
+        }
     };
 
     return (

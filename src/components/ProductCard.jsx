@@ -7,8 +7,7 @@ export const ProductCard = ({ product, onAddToCart }) => {
             <div>
                 <Link to={`/product/${product.id}`} className="product-card-img-wrapper">
                     <img
-                        src={product.imagen}
-                        alt={product.nombre}
+                        src={`${import.meta.env.BASE_URL}${product.imagen.startsWith('/') ? product.imagen.slice(1) : product.imagen}`} alt={product.nombre}
                         className="product-card-img"
                         onError={(e) => {
                             e.target.src = "https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=600&q=80";
@@ -25,16 +24,15 @@ export const ProductCard = ({ product, onAddToCart }) => {
                     </Link>
                     <p className="product-card-desc">{product.descripcion}</p>
 
-                    {product.especificaciones && (
-                        <div className="product-card-specs">
-                            <div className="product-card-spec-item">
-                                {product.especificaciones.peso || 'N/A'}
-                            </div>
-                            <div className="product-card-spec-item">
-                                {product.especificaciones.gradoMilitar || 'MIL-SPEC'}
-                            </div>
+                    {/* Leemos peso y gradoMilitar directamente del producto */}
+                    <div className="product-card-specs">
+                        <div className="product-card-spec-item">
+                            {product.peso || 'N/A'}
                         </div>
-                    )}
+                        <div className="product-card-spec-item">
+                            {product.gradoMilitar || 'MIL-SPEC'}
+                        </div>
+                    </div>
                 </div>
             </div>
 

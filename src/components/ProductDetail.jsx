@@ -9,7 +9,9 @@ export const ProductDetail = () => {
     const { products, addToCart } = useCart();
     const [quantity, setQuantity] = useState(1);
     const [notification, setNotification] = useState(null);
+
     const product = products.find((p) => String(p.id) === String(id));
+
     if (!product) {
         return (
             <div className="product-detail-container" style={{ textAlign: 'center', padding: '4rem 1rem' }}>
@@ -19,12 +21,14 @@ export const ProductDetail = () => {
             </div>
         );
     }
+
     const handleAddToCart = () => {
         if (product.stock <= 0) return;
         addToCart(product, quantity);
         setNotification(`Asignado al equipo: ${quantity}x ${product.nombre}`);
         setTimeout(() => setNotification(null), 3000);
     };
+
     return (
         <div className="product-detail-container">
             {notification && (
@@ -38,9 +42,12 @@ export const ProductDetail = () => {
             <div className="product-detail-grid">
                 <div className="product-detail-img-wrapper">
                     <img
-                        src={product.imagen}
+                        src={`${import.meta.env.BASE_URL}${product.imagen.startsWith('/') ? product.imagen.slice(1) : product.imagen}`}
                         alt={product.nombre}
                         className="product-detail-img"
+                        onError={(e) => {
+                            e.target.src = "https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=600&q=80";
+                        }}
                     />
                     <span className="product-detail-category">{product.categoria}</span>
                 </div>
@@ -54,21 +61,22 @@ export const ProductDetail = () => {
                         </div>
                         <h1 className="product-detail-title">{product.nombre}</h1>
                         <p className="product-detail-desc">{product.descripcion}</p>
-                        {product.especificaciones && (
-                            <div className="product-detail-specs-box">
-                                <h3 className="specs-title">ESPECIFICACIONES MIL-SPEC</h3>
-                                <ul className="specs-list">
-                                    <li><span>Peso:</span> <strong>{product.especificaciones.peso || 'N/A'}</strong></li>
-                                    <li><span>Grado:</span> <strong>{product.especificaciones.gradoMilitar || 'MIL-SPEC'}</strong></li>
-                                    {product.especificaciones.material && (
-                                        <li><span>Material:</span> <strong>{product.especificaciones.material}</strong></li>
-                                    )}
-                                    {product.especificaciones.resistencia && (
-                                        <li><span>Resistencia:</span> <strong>{product.especificaciones.resistencia}</strong></li>
-                                    )}
-                                </ul>
-                            </div>
-                        )}
+                        <div className="product-detail-specs-box">
+                            <h3 className="specs-title">ESPECIFICACIONES MIL-SPEC</h3>
+                            <ul className="specs-list">
+                                <li><span>Peso:</span> <strong>{product.peso || 'N/A'}</strong></li>
+                                <li><span>Grado:</span> <strong>{product.gradoMilitar || 'MIL-SPEC'}</strong></li>
+                                {product.material && (
+                                    <li><span>Material:</span> <strong>{product.material}</strong></li>
+                                )}
+                                {product.resistenciaAgua && (
+                                    <li><span>Resistencia Agua:</span> <strong>{product.resistenciaAgua}</strong></li>
+                                )}
+                                {product.camuflaje && (
+                                    <li><span>Camuflaje:</span> <strong>{product.camuflaje}</strong></li>
+                                )}
+                            </ul>
+                        </div>
                     </div>
                     <div className="product-detail-actions">
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

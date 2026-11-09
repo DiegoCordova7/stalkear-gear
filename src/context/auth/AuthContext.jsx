@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { getStorageData, setStorageData, KEYS, initStorage } from '../../services/storageService';
 import { AuthContext } from './authContextObj';
+import { loginUser, registerUser, updateUserProfile } from '../../services/api';
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(() => {
@@ -8,21 +9,15 @@ export const AuthProvider = ({ children }) => {
         return getStorageData(KEYS.SESSION) || null;
     });
 
-    const [usersList, setUsersList] = useState(() => {
-        initStorage();
-        return getStorageData(KEYS.USERS) || [];
-    });
-
-    const login = (email, password) => {
-        const foundUser = usersList.find(
-            (u) => u.email.toLowerCase() === email.toLowerCase() && u.password === password
-        );
-        if (foundUser) {
-            setUser(foundUser);
-            setStorageData(KEYS.SESSION, foundUser);
+    const login = async (email, password) => {
+        try {
+            const loggedUser = await loginUser({ email, password });
+            setUser(loggedUser);
+            setStorageData(KEYS.SESSION, loggedUser);
             return { success: true };
+        } catch (err) {
+            return { success: false, message: err.message || 'Credenciales inválidas' };
         }
-        return { success: false, message: 'Credenciales inválidas' };
     };
 
     const logout = () => {
@@ -30,38 +25,32 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem(KEYS.SESSION);
     };
 
-    const register = (newUser) => {
-        const exists = usersList.some((u) => u.email.toLowerCase() === newUser.email.toLowerCase());
-        if (exists) {
-            return { success: false, message: 'El correo ya está registrado' };
+    const register = async (newUser) => {
+        try {
+            const createdUser = await registerUser(newUser);
+            setUser(createdUser);
+            setStorageData(KEYS.SESSION, createdUser);
+            return { success: true };
+        } catch (err) {
+            return { success: false, message: err.message || 'Error al registrar usuario' };
         }
-        const createdUser = {
-            id: `user-${Date.now()}`,
-            ...newUser,
-            role: 'client'
-        };
-        const updatedUsers = [...usersList, createdUser];
-        setUsersList(updatedUsers);
-        setStorageData(KEYS.USERS, updatedUsers);
-
-        setUser(createdUser);
-        setStorageData(KEYS.SESSION, createdUser);
-        return { success: true };
     };
 
-    const updateProfile = (updatedData) => {
-        if (!user) return;
-        const updatedUser = { ...user, ...updatedData };
-        const updatedList = usersList.map((u) => (u.id === user.id ? updatedUser : u));
+    const updateProfile = async (updatedData) => {
+        if (!user) return { success: false, message: 'No hay sesión activa' };
 
-        setUser(updatedUser);
-        setUsersList(updatedList);
-        setStorageData(KEYS.SESSION, updatedUser);
-        setStorageData(KEYS.USERS, updatedList);
+        try {
+            const updatedUserFromApi = await updateUserProfile(user.id, updatedData);
+            setUser(updatedUserFromApi);
+            setStorageData(KEYS.SESSION, updatedUserFromApi);
+            return { success: true };
+        } catch (err) {
+            return { success: false, message: err.message };
+        }
     };
 
     return (
-        <AuthContext.Provider value={{ user, usersList, login, logout, register, updateProfile }}>
+        <AuthContext.Provider value={{ user, login, logout, register, updateProfile }}>
             {children}
         </AuthContext.Provider>
     );

@@ -22,9 +22,6 @@ export const Admin = () => {
             <div className="tactical-denied">
                 <h2>ACCESO RESTRINGIDO A COMANDANCIA</h2>
                 <p>Este nivel de autorización requiere credenciales con rango de Administrador.</p>
-                <p className="tactical-denied-tip">
-                    (Tip: Puedes cambiar temporalmente tu rol a 'admin' en el objeto de usuario en localStorage o mediante la base de datos de usuarios).
-                </p>
             </div>
         );
     }

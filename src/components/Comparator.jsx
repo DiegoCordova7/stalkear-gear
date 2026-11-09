@@ -6,6 +6,7 @@ import './Comparator.css';
 export const Comparator = () => {
     const { products } = useCart();
     const [selectedIds, setSelectedIds] = useState([]);
+
     const handleSelectChange = (e) => {
         const id = e.target.value;
         if (!id) return;
@@ -20,6 +21,15 @@ export const Comparator = () => {
 
     const handleRemove = (id) => {
         setSelectedIds(selectedIds.filter((item) => item !== id));
+    };
+
+    const getImagePath = (imgPath) => {
+        if (!imgPath) return '';
+        if (imgPath.startsWith('http') || imgPath.startsWith('blob')) return imgPath;
+        const baseUrl = import.meta.env.BASE_URL || '/';
+        const cleanPath = imgPath.startsWith('/') ? imgPath.slice(1) : imgPath;
+        const cleanBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+        return `${cleanBase}${cleanPath}`;
     };
 
     const selectedProducts = selectedIds.map((id) => products.find((p) => p.id === id)).filter(Boolean);
@@ -67,7 +77,14 @@ export const Comparator = () => {
                                 <td style={{ fontWeight: 'bold', color: '#9ca3af' }}>Visual / Identidad</td>
                                 {selectedProducts.map((prod) => (
                                     <td key={prod.id} style={{ textAlign: 'center' }}>
-                                        <img src={prod.imagen} alt={prod.nombre} className="tactical-comp-img" />
+                                        <img
+                                            src={getImagePath(prod.imagen)}
+                                            alt={prod.nombre}
+                                            className="tactical-comp-img"
+                                            onError={(e) => {
+                                                e.target.src = "https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=600&q=80";
+                                            }}
+                                        />
                                         <div className="tactical-comp-title">{prod.nombre}</div>
                                     </td>
                                 ))}

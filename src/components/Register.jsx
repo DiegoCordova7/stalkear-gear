@@ -11,7 +11,7 @@ export const Register = () => {
     const { register } = useAuth();
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
 
@@ -25,10 +25,13 @@ export const Register = () => {
             return;
         }
 
-        const result = register({ nombre, email, password });
+        const result = await register({ nombre, email, password });
 
-        if (result.success) navigate('/catalog');
-        else setError(result.message || 'ERROR AL REGISTRAR EL OPERADOR.');
+        if (result.success) {
+            navigate('/catalog');
+        } else {
+            setError(result.message || 'ERROR AL REGISTRAR EL OPERADOR.');
+        }
     };
 
     return (

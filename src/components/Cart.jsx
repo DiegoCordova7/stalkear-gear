@@ -21,6 +21,15 @@ export const Cart = () => {
         } else setError(result.message);
     };
 
+    const getImagePath = (imgPath) => {
+        if (!imgPath) return '';
+        if (imgPath.startsWith('http') || imgPath.startsWith('blob')) return imgPath;
+        const baseUrl = import.meta.env.BASE_URL || '/';
+        const cleanPath = imgPath.startsWith('/') ? imgPath.slice(1) : imgPath;
+        const cleanBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+        return `${cleanBase}${cleanPath}`;
+    };
+
     if (cart.length === 0) {
         return (
             <div className="tactical-empty-cart">
@@ -43,47 +52,69 @@ export const Cart = () => {
             {message && <div className="tactical-alert success">{message}</div>}
 
             <div className="tactical-cart-items-list">
-                {cart.map((item) => (
-                    <div key={item.id} className="tactical-cart-item">
-                        <div className="tactical-cart-item-info">
-                            <img src={item.imagen} alt={item.nombre} className="tactical-cart-item-img" />
-                            <div>
-                                <h3 className="tactical-cart-item-name">{item.nombre}</h3>
-                                <p className="tactical-cart-item-price">${item.precio} MXN</p>
-                            </div>
-                        </div>
+                {cart.map((item) => {
+                    const maxStock = item.stock ?? 99;
+                    const canIncrement = item.cantidad < maxStock;
 
-                        <div className="tactical-cart-item-actions">
-                            <div className="tactical-quantity-control">
-                                <button
-                                    onClick={() => updateQuantity(item.id, item.cantidad - 1)}
-                                    className="tactical-qty-btn"
-                                >
-                                    -
-                                </button>
-                                <span className="tactical-qty-value">{item.cantidad}</span>
-                                <button
-                                    onClick={() => updateQuantity(item.id, item.cantidad + 1)}
-                                    className="tactical-qty-btn"
-                                >
-                                    +
-                                </button>
+                    return (
+                        <div key={item.id} className="tactical-cart-item">
+                            <div className="tactical-cart-item-info">
+                                <img
+                                    src={getImagePath(item.imagen)}
+                                    alt={item.nombre}
+                                    className="tactical-cart-item-img"
+                                    onError={(e) => {
+                                        e.target.src = "https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=600&q=80";
+                                    }}
+                                />
+                                <div>
+                                    <h3 className="tactical-cart-item-name">{item.nombre}</h3>
+                                    <p className="tactical-cart-item-price">${item.precio} MXN</p>
+                                    <span style={{ fontSize: '0.75rem', color: '#9ca3af', fontFamily: 'monospace' }}>
+                                        Stock disponible: {maxStock}
+                                    </span>
+                                </div>
                             </div>
 
-                            <span className="tactical-cart-item-subtotal">
-                                ${(item.precio * item.cantidad).toLocaleString()} MXN
-                            </span>
+                            <div className="tactical-cart-item-actions">
+                                <div className="tactical-quantity-control">
+                                    <button
+                                        onClick={() => updateQuantity(item.id, item.cantidad - 1)}
+                                        className="tactical-qty-btn"
+                                    >
+                                        -
+                                    </button>
+                                    <span className="tactical-qty-value">{item.cantidad}</span>
+                                    <button
+                                        onClick={() => {
+                                            if (canIncrement) {
+                                                updateQuantity(item.id, item.cantidad + 1);
+                                            }
+                                        }}
+                                        disabled={!canIncrement}
+                                        className="tactical-qty-btn"
+                                        style={{ opacity: canIncrement ? 1 : 0.4, cursor: canIncrement ? 'pointer' : 'not-allowed' }}
+                                        title={canIncrement ? 'Aumentar cantidad' : 'Límite de stock alcanzado'}
+                                    >
+                                        +
+                                    </button>
+                                </div>
 
-                            <button
-                                onClick={() => removeFromCart(item.id)}
-                                className="tactical-remove-btn"
-                                title="Eliminar artículo"
-                            >
-                                🗑️
-                            </button>
+                                <span className="tactical-cart-item-subtotal">
+                                    ${(item.precio * item.cantidad).toLocaleString()} MXN
+                                </span>
+
+                                <button
+                                    onClick={() => removeFromCart(item.id)}
+                                    className="tactical-remove-btn"
+                                    title="Eliminar artículo"
+                                >
+                                    🗑️
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
 
             <div className="tactical-cart-summary">

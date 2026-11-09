@@ -22,10 +22,12 @@ export const Profile = () => {
 
     const userOrders = orders.filter((order) => order.userId === user.id);
 
-    const handleUpdate = (e) => {
+    const handleUpdate = async (e) => {
         e.preventDefault();
-        updateProfile({ nombre, email });
-        setMensaje('CREDENCIALES DE OPERADOR ACTUALIZADAS.');
+        setMensaje(null);
+        const result = await updateProfile({ nombre, email });
+        if (result.success) setMensaje('CREDENCIALES DE OPERADOR ACTUALIZADAS Y SINCRONIZADAS.');
+        else setMensaje(result.message || 'ERROR AL ACTUALIZAR PERFIL.');
         setTimeout(() => setMensaje(null), 3000);
     };
 
