@@ -1,15 +1,33 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../context/auth/useAuth';
 import { useCart } from '../context/cart/useCart';
 import './Profile.css';
 
 export const Profile = () => {
     const { user, updateProfile } = useAuth();
-    const { orders } = useCart();
+    const { orders, refreshUserOrders } = useCart();
 
     const [nombre, setNombre] = useState(user ? user.nombre : '');
     const [email, setEmail] = useState(user ? user.email : '');
     const [mensaje, setMensaje] = useState(null);
+    const [loadingOrders, setLoadingOrders] = useState(false);
+
+    useEffect(() => {
+        if (!user?.id || typeof refreshUserOrders !== 'function') return;
+        let active = true;
+        const syncOrders = async () => {
+            setLoadingOrders(true);
+            try {
+                await refreshUserOrders();
+            } finally {
+                if (active) setLoadingOrders(false);
+            }
+        };
+        syncOrders();
+        return () => {
+            active = false;
+        };
+    }, [user?.id, refreshUserOrders]);
 
     if (!user) {
         return (
@@ -92,7 +110,11 @@ export const Profile = () => {
             </div>
 
             <h2 className="tactical-orders-heading">HISTORIAL DE PEDIDOS</h2>
-            {userOrders.length === 0 ? (
+            {loadingOrders && userOrders.length === 0 ? (
+                <div className="tactical-card-box" style={{ textAlign: 'center', color: '#9ca3af' }}>
+                    Sincronizando historial de órdenes...
+                </div>
+            ) : userOrders.length === 0 ? (
                 <div className="tactical-card-box" style={{ textAlign: 'center', color: '#9ca3af' }}>
                     No se registran órdenes de compra emitidas por este operador.
                 </div>
@@ -106,11 +128,11 @@ export const Profile = () => {
                             </div>
                             <div style={{ textAlign: 'right' }}>
                                 <span className="tactical-order-status">{order.estado}</span>
-                                <span className="tactical-order-total">${order.total.toLocaleString()} MXN</span>
+                                <span className="tactical-order-total">${Number(order.total || 0).toLocaleString()} MXN</span>
                             </div>
                         </div>
                         <div className="tactical-order-items">
-                            {order.items.map((item, idx) => (
+                            {(order.items || []).map((item, idx) => (
                                 <div key={idx} className="tactical-order-item-badge">
                                     {item.nombre} (x{item.cantidad})
                                 </div>
